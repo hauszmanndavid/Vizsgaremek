@@ -1,11 +1,3 @@
 import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'Angular 21 Starter!';
-}
+@Component({selector:'app-root',template:'<h1>Angular Stable</h1>'})
+export class AppComponent {}
