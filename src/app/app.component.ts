@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-<<<<<<< Updated upstream
 
 @Component({
   selector: 'app-root',
@@ -10,7 +9,3 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ng21-full';
 }
-=======
-@Component({selector:'app-root',template:'<h1>Angular Stable</h1>'})
-export class AppComponent {}
->>>>>>> Stashed changes
