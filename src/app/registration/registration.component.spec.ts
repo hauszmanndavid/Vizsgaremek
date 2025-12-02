@@ -21,3 +21,7 @@ describe('RegistrationComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+function expect(component: RegistrationComponent) {
+  throw new Error('Function not implemented.');
+}
+

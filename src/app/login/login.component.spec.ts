@@ -21,3 +21,11 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+function beforeEach(arg0: () => Promise<void>) {
+  throw new Error('Function not implemented.');
+}
+
+function expect(component: LoginComponent) {
+  throw new Error('Function not implemented.');
+}
+
