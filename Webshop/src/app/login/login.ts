@@ -24,7 +24,7 @@ export class Login {
     const { email, password } = this.loginForm.value;
 
     console.log("Bejelentkezési adatok:", email, password);
-    // Ide jön majd az API-hívás
+
   }
 }
 
