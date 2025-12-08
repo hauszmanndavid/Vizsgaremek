@@ -1,94 +1,111 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: #e6edf4; 
-}
-
-.login-wrapper {
+.auth-wrapper {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  background: #e5ecf3; /* világos kékesszürke háttér */
+  padding: 20px;
 }
 
+/* Központi kártya */
 .card {
-  background: #9ea8b5;
-  padding: 40px;
+  background: #a8b2bf; /* világos szürke panel */
+  padding: 40px 50px;
   border-radius: 10px;
-  width: 420px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 500px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border: 3px solid #2980e9; /* kék szegély mint a képen */
+}
+
+h2 {
   text-align: center;
-}
-
-.card h2 {
-  margin-bottom: 25px;
-  font-size: 28px;
+  margin-bottom: 30px;
+  color: #000;
   font-weight: 600;
-  color: #2b2b2b;
+  font-size: 26px;
 }
 
-.card label {
+/* Label-ek */
+label {
   display: block;
-  text-align: left;
-  margin: 12px 0 4px;
-  font-weight: bold;
-  color: #2b2b2b;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #000;
+  font-size: 14px;
 }
 
-.card input[type="email"],
-.card input[type="password"] {
+/* Input mezők */
+input {
   width: 100%;
-  padding: 12px;
+  padding: 12px 14px;
   border-radius: 8px;
   border: none;
-  background: #f0f0f0;
+  background: #f1f1f1;
+  color: #000;
   font-size: 15px;
-  margin-bottom: 10px;
   outline: none;
 }
 
+/* Hibaüzenetek */
 .error {
-  color: #b30000;
   font-size: 13px;
-  text-align: left;
-  margin-bottom: 5px;
+  color: #d8000c;
+  margin-top: 4px;
 }
 
-
-.card .links-row {
+/* Linkek sorban */
+.link-row {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
   font-size: 13px;
+  margin-top: 8px;
+  color: #000;
 }
 
-.card .links-row a {
+.link-row a {
+  color: #000;
   text-decoration: none;
-  color: #333;
+  font-weight: 500;
 }
 
-.card .links-row a:hover {
+.link-row a:hover {
   text-decoration: underline;
 }
 
-button[type="submit"] {
-  background: #f08000;
-  color: white;
-  font-size: 18px;
-  padding: 12px 30px;
+/* Belépés gomb */
+button {
+  margin-top: 25px;
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px;
   border: none;
   border-radius: 8px;
+  background: #f57c00; /* narancs */
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
-  margin-top: 25px;
-  transition: background 0.2s;
 }
 
-button[type="submit"]:hover {
-  background: #d46f00;
-}
-
-button[type="submit"]:disabled {
-  background: #b9b9b9;
+button:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
+}
+
+.switch-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.switch-link {
+  color: #007bff;       /* Kék link */
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.switch-link:hover {
+  color: #0056b3;       /* Sötétebb kék hover esetén */
 }
