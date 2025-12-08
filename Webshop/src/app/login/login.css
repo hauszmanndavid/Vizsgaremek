@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #e6edf4; 
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: #9ea8b5;
+  padding: 40px;
+  border-radius: 10px;
+  width: 420px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.card h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #2b2b2b;
+}
+
+.card label {
+  display: block;
+  text-align: left;
+  margin: 12px 0 4px;
+  font-weight: bold;
+  color: #2b2b2b;
+}
+
+.card input[type="email"],
+.card input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #f0f0f0;
+  font-size: 15px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.error {
+  color: #b30000;
+  font-size: 13px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+
+.card .links-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.card .links-row a {
+  text-decoration: none;
+  color: #333;
+}
+
+.card .links-row a:hover {
+  text-decoration: underline;
+}
+
+button[type="submit"] {
+  background: #f08000;
+  color: white;
+  font-size: 18px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #d46f00;
+}
+
+button[type="submit"]:disabled {
+  background: #b9b9b9;
+  cursor: not-allowed;
+}

@@ -13,10 +13,15 @@
       <label>Jelszó</label>
       <input type="password" formControlName="password" placeholder="Jelszó">
       <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-        Minimum 6 karakter
+        Minimum 8 karakter
       </div>
 
-      <button type="submit" [disabled]="loginForm.invalid">Belépés</button>
+      <button type="submit">Belépés</button>
+
+      <div class="links-row">
+        <a href="#">Nincsen fiókja? Regisztráljon</a>
+        <a href="#">Elfelejtette a jelszavát?</a>
+      </div>
 
     </form>
   </div>
