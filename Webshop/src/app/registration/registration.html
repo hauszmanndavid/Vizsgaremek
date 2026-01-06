@@ -4,11 +4,6 @@
     <h2>Regisztráció</h2>
 
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      <label>Teljes név:</label>
-      <input type="text" formControlName="fullname" placeholder="Add meg a teljes neved">
-      <div class="error" *ngIf="registrationForm.get('fullname')?.touched && registrationForm.get('fullname')?.invalid">
-        Minimum 3 karakter
-      </div>
 
       <label>E-mail:</label>
       <input type="email" formControlName="email" placeholder="E-mail címed">
