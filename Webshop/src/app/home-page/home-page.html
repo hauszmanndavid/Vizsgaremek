@@ -1,32 +1,57 @@
 <div class="page">
-    <app-nav-bar/>
-    
-    <section class="filter">
-        <div class="field">Márka</div>
-        <div class="field">Modell</div>
-        <div class="field-small">-tól</div>
-        <div class="field-small">-ig</div>
-        <div class="field-small">-tól</div>
-        <div class="field-small">-ig</div>
 
-        <button class="search-btn">Keresés</button>
-    </section>
+  <app-nav-bar/>
 
-    <section class="produt">
-        <img src="" />
-      <div class="info">
-        <strong>6 sebességes váltógomb</strong>
-        <p>2018-as Kia Ceed és újabb modellekhez</p>
-        <span>Ár: 13 570 Ft</span>
+  <div class="filters">
+    <div>
+      <label>Márka</label>
+      <select></select>
+    </div>
+
+    <div>
+      <label>Modell</label>
+      <select></select>
+    </div>
+
+    <div>
+      <label>Évjárat</label>
+      <div class="range">
+        <input placeholder="-tól">
+        <input placeholder="-ig">
       </div>
-      <button class="cart-btn">Kosárba</button>
+    </div>
 
-      <img src="" />
-      <div class="info">
-        <strong>6 sebességes váltógomb</strong>
-        <p>2018-as Kia Ceed és újabb modellekhez</p>
-        <span>Ár: 13 570 Ft</span>
+    <div>
+      <label>Vételár</label>
+      <div class="range">
+        <input placeholder="-tól">
+        <input placeholder="-ig">
       </div>
-      <button class="cart-btn">Kosárba</button>
-    </section>
+    </div>
+
+    <button class="btn orange search">Keresés</button>
+  </div>
+
+  <h3>Kiemelt hirdetések:</h3>
+
+  <div class="product">
+    <img src="https://via.placeholder.com/120">
+    <div class="text">
+      <strong>6 sebességes váltógomb</strong>
+      <p>2018-as Kia Ceed és újabb modellekhez</p>
+      <p>Ár: 13 570 Ft</p>
+    </div>
+    <button class="btn orange">Kosárba</button>
+  </div>
+
+  <div class="product">
+    <img src="https://via.placeholder.com/120">
+    <div class="text">
+      <strong>Univerzális üléshuzat</strong>
+      <p>Bármelyik autóhoz, amelyben kagylóülések vannak</p>
+      <p>Ár: 33 920 Ft</p>
+    </div>
+    <button class="btn orange">Kosárba</button>
+  </div>
+
 </div>
