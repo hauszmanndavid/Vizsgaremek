@@ -6,9 +6,10 @@ import { HomePage } from './home-page/home-page';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  { path: 'home', component: HomePage },
   { path: 'login', component: Login },
   { path: 'register', component: Registration },
-  { path: '**', redirectTo: 'login' },
-  { path: 'home', component: HomePage},
-  { path: '**', redirectTo: 'home' },
-];
+
+  { path: '**', redirectTo: 'home' }
+]
