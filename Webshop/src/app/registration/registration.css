@@ -1,4 +1,4 @@
-.auth-wrapper {
+.registration-wrapper {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -109,3 +109,4 @@ button:disabled {
 .switch-link:hover {
   color: #0056b3;       /* Sötétebb kék hover esetén */
 }
+

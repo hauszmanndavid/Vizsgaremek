@@ -2,17 +2,19 @@ import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { email } from '@angular/forms/signals';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, CommonModule],
+  imports: [ReactiveFormsModule, NgIf, CommonModule, RouterModule],
   templateUrl: './registration.html',
   styleUrl: './registration.css',
 })
 export class Registration {
 
   registrationForm: any;
+  router: any;
 
   constructor(private fb: FormBuilder) {
     this.registrationForm = this.fb.group({
@@ -28,5 +30,7 @@ export class Registration {
     } else{
       this.registrationForm.markAllAsTouched();
     }
+
+    this.router.navigate(['/home']);
   }
 }

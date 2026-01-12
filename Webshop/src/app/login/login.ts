@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 
 
 @Component({
@@ -14,6 +14,7 @@ import { RouterLink } from "@angular/router";
 export class Login {
 
   loginForm: FormGroup;
+  router: any;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -24,10 +25,12 @@ export class Login {
 
   onSubmit() {
     if (this.loginForm.invalid) return;
-
+    //backend
     const { email, password } = this.loginForm.value;
 
     console.log("Bejelentkezési adatok:", email, password);
+
+    this.router.navigate(['/home']);
 
   }
 }

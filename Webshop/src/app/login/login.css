@@ -1,9 +1,9 @@
-.auth-wrapper {
+.login-wrapper {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #e5ecf3; /* világos kékesszürke háttér */
+  background: #e5ecf3;
   padding: 20px;
 }
 
