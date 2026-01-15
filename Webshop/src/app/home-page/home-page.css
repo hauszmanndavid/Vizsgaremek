@@ -1,0 +1,85 @@
+.page {
+  background: white;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.filters {
+  background: #edf2f7;
+  margin: 20px auto;
+  max-width: 900px;
+  padding: 20px;
+  border-radius: 10px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: 20px;
+  align-items: end;
+}
+
+.filters label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.filters select,
+.filters input {
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: #b6c0cc;
+  padding: 0 10px;
+}
+
+.range {
+  display: flex;
+  gap: 8px;
+}
+
+.search {
+  height: 36px;
+  width: 100px;
+}
+
+h3 {
+  margin: 25px 0 10px;
+  color: #000;
+}
+
+.product {
+  background: #b6c0cc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 15px;
+  align-items: center;
+}
+
+.product img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.text p {
+  margin: 2px 0;
+}
+
+.orange {
+  background: #ff8a00;
+  color: #000;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
