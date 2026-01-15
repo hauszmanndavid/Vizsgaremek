@@ -1,12 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { NavBar } from "../nav-bar/nav-bar";
 
 
 @Component({
   selector: 'app-search-result',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavBar],
   templateUrl: './search-result.html',
   styleUrl: './search-result.css',
 })
