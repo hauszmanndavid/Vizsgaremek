@@ -1,0 +1,28 @@
+.results-wrapper {
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.result-card {
+  background: #bfc7d1;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-btn {
+  background: #ff9800;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.no-results {
+  margin-top: 40px;
+  font-size: 18px;
+}

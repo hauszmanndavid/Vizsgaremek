@@ -1,11 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-search-result',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './search-result.html',
   styleUrl: './search-result.css',
 })
-export class SearchResult {
+export class SearchResult implements OnInit {
+  filters: any = {};
+  result: any[] = [];
+  products: any[] = [];
 
+private route= inject(ActivatedRoute);
+
+  ngOnInit(): void {
+      this.route.queryParams.subscribe(params =>{
+        this.filters = params;
+        this.search();
+      });
+  }
+
+  search() {
+
+  }
 }
