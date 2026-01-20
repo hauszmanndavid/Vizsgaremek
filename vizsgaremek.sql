@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 08. 14:21
--- Kiszolgáló verziója: 10.4.28-MariaDB
--- PHP verzió: 8.2.4
+-- Host: localhost:3306
+-- Generation Time: Jan 12, 2026 at 10:52 AM
+-- Server version: 5.7.24
+-- PHP Version: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,12 +18,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `vizsgaremek`
+-- Database: `vizsgaremek`
 --
 
 DELIMITER $$
 --
--- Eljárások
+-- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AddCartItem` (IN `p_product_id` INT, IN `p_quantity` INT)   BEGIN
     INSERT INTO cart (product_id, quantity, created_at, modified_at)
@@ -109,19 +109,19 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `cart`
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `cart`
+-- Dumping data for table `cart`
 --
 
 INSERT INTO `cart` (`id`, `product_id`, `quantity`, `created_at`, `modified_at`) VALUES
@@ -140,38 +140,39 @@ INSERT INTO `cart` (`id`, `product_id`, `quantity`, `created_at`, `modified_at`)
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `desc` varchar(150) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `name`, `desc`, `created_at`, `modified_at`, `deleted_at`) VALUES
-(1, 'Elektronika', 'Elektronikai termékek', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(2, 'Háztartás', 'Háztartási eszközök', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(3, 'Könyvek', 'Könyvek és e-bookok', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(4, 'Ruházat', 'Férfi és női ruházat', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(5, 'Sport', 'Sport- és fitnesz eszközök', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(6, 'Játékok', 'Gyermekjátékok', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(7, 'Iroda', 'Irodai kellékek', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(8, 'Szépségápolás', 'Kozmetikai termékek', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(9, 'Autó-motor', 'Autós és motoros kiegészítők', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
-(10, 'Kert', 'Kerti eszközök és bútorok', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04');
+(1, 'Kormányborítás', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(2, 'Üléshuzat', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(3, 'Ajtó kárpit', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(4, 'Pedál', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(5, 'Műszerfal borítás', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(6, 'Középkonzol', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(7, 'Tetőkárpit', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(8, 'Váltógomb', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(9, 'Multimédiás eszököz', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(10, 'Légfrissítő', '', '2026-01-08 12:55:04', '2026-01-08 12:55:04', '2026-01-08 12:55:04'),
+(11, 'Csomagtér választó', '', '2026-01-12 10:34:59', '2026-01-12 10:35:42', '2026-01-12 10:35:42');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -179,10 +180,10 @@ CREATE TABLE `customer` (
   `email` varchar(50) NOT NULL,
   `password` varchar(14) NOT NULL,
   `phone` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`id`, `email`, `password`, `phone`) VALUES
@@ -200,7 +201,7 @@ INSERT INTO `customer` (`id`, `email`, `password`, `phone`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `discount`
+-- Table structure for table `discount`
 --
 
 CREATE TABLE `discount` (
@@ -209,31 +210,31 @@ CREATE TABLE `discount` (
   `desc` varchar(200) NOT NULL,
   `discount_percent` decimal(10,0) NOT NULL,
   `active` tinyint(1) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `discount`
+-- Dumping data for table `discount`
 --
 
 INSERT INTO `discount` (`id`, `name`, `desc`, `discount_percent`, `active`, `created_at`, `modified_at`, `deleted_at`) VALUES
-(1, 'Tavaszi akció', 'Tavaszi szezonális kedvezmény', 10, 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(2, 'Nyári akció', 'Nyári leárazás', 15, 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(3, 'Őszi akció', 'Őszi szezonális kedvezmény', 20, 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(4, 'Téli akció', 'Téli kiárusítás', 25, 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(5, 'Black Friday', 'Black Friday kedvezmény', 30, 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(6, 'Cyber Monday', 'Cyber Monday online kedvezmény', 35, 0, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(7, 'Hűségkedvezmény', 'Visszatérő vásárlóknak', 5, 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(8, 'Új vásárló', 'Első vásárlás kedvezménye', 10, 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(9, 'VIP', 'VIP ügyfeleknek szóló kedvezmény', 40, 0, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
-(10, 'Lejárt akció', 'Már nem érvényes kedvezmény', 50, 0, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26');
+(1, 'Tavaszi akció', 'Tavaszi szezonális kedvezmény', '10', 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(2, 'Nyári akció', 'Nyári leárazás', '15', 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(3, 'Őszi akció', 'Őszi szezonális kedvezmény', '20', 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(4, 'Téli akció', 'Téli kiárusítás', '25', 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(5, 'Black Friday', 'Black Friday kedvezmény', '30', 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(6, 'Cyber Monday', 'Cyber Monday online kedvezmény', '35', 0, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(7, 'Hűségkedvezmény', 'Visszatérő vásárlóknak', '5', 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(8, 'Új vásárló', 'Első vásárlás kedvezménye', '10', 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(9, 'VIP', 'VIP ügyfeleknek szóló kedvezmény', '40', 0, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
+(10, 'Lejárt akció', 'Már nem érvényes kedvezmény', '50', 0, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `order`
+-- Table structure for table `order`
 --
 
 CREATE TABLE `order` (
@@ -241,30 +242,30 @@ CREATE TABLE `order` (
   `customer_id` varchar(20) NOT NULL,
   `total` decimal(10,0) NOT NULL,
   `payment_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `order`
+-- Dumping data for table `order`
 --
 
 INSERT INTO `order` (`id`, `customer_id`, `total`, `payment_id`, `created_at`, `modified_at`) VALUES
-(1, '1', 12500, 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(2, '2', 23990, 2, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(3, '3', 8990, 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(4, '4', 45900, 3, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(5, '5', 15990, 2, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(6, '6', 29990, 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(7, '7', 7490, 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(8, '8', 18990, 3, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(9, '9', 32990, 2, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
-(10, '10', 9990, 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46');
+(1, '1', '12500', 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(2, '2', '23990', 2, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(3, '3', '8990', 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(4, '4', '45900', 3, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(5, '5', '15990', 2, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(6, '6', '29990', 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(7, '7', '7490', 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(8, '8', '18990', 3, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(9, '9', '32990', 2, '2026-01-08 13:00:46', '2026-01-08 13:00:46'),
+(10, '10', '9990', 1, '2026-01-08 13:00:46', '2026-01-08 13:00:46');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `order_items`
+-- Table structure for table `order_items`
 --
 
 CREATE TABLE `order_items` (
@@ -272,12 +273,12 @@ CREATE TABLE `order_items` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `order_items`
+-- Dumping data for table `order_items`
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `created_at`, `modified_at`) VALUES
@@ -295,7 +296,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `created_
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `payment`
+-- Table structure for table `payment`
 --
 
 CREATE TABLE `payment` (
@@ -304,12 +305,12 @@ CREATE TABLE `payment` (
   `amount` int(11) NOT NULL,
   `provider` varchar(10) NOT NULL,
   `status` varchar(3) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `payment`
+-- Dumping data for table `payment`
 --
 
 INSERT INTO `payment` (`id`, `order_id`, `amount`, `provider`, `status`, `created_at`, `modified_at`) VALUES
@@ -327,7 +328,7 @@ INSERT INTO `payment` (`id`, `order_id`, `amount`, `provider`, `status`, `create
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -337,31 +338,31 @@ CREATE TABLE `product` (
   `category_id` int(11) NOT NULL,
   `discount_id` int(11) NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `desc`, `category_id`, `discount_id`, `price`, `created_at`, `modified_at`, `deleted_at`) VALUES
-(1, 'Laptop', '14 inch laptop, 8GB RAM', 1, 1, 199900, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(2, 'Okostelefon', 'Android okostelefon, 128GB', 1, 2, 99990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(3, 'Konyhai robotgép', 'Multifunkciós konyhai gép', 2, 3, 45990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(4, 'Futócipő', 'Sportcipő férfiaknak', 5, 4, 24990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(5, 'Könyv: JavaScript', 'Programozás könyv kezdőknek', 3, 1, 6990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(6, 'Női póló', '100% pamut, különböző méretek', 4, 5, 5990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(7, 'Gyerek játék autó', 'Távirányítós autó', 6, 2, 8990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(8, 'Irodai szék', 'Ergonomikus irodai szék', 7, 0, 29990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(9, 'Arckrém', 'Hidratáló arckrém', 8, 1, 4990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
-(10, 'Kerti lámpa', 'Napelemes kültéri lámpa', 10, 0, 12990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51');
+(1, 'Alcantara üléshuzat', 'Prémium Alcantara ülésvédő huzat.', 1, 1, '60000', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(2, 'Egyszerű csomagtér választó háló', 'Minden járműhöz lehet használni.', 1, 2, '1990', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(3, 'Multimédiás fejegység', 'Érintőkijelzős fejegység Bluetooth-tal, Android Auto-val és Apple CarPlay-yel.', 2, 3, '45990', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(4, 'Sport váltógomb (5 Fokozatú)', 'Bármilyen autóba illik aminek 5 fokozatú váltóje van.', 5, 4, '3990', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(5, 'Areon cseresznye légfrissítő', 'Cseresznye illatú Areon legfrissítő', 3, 1, '1500', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(6, 'Alumínium pedálszett', 'Ez a szett tartalmaz egy gázpedált egy fékpedált és egy kuplung pedál is.', 4, 5, '12990', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(7, 'Világos műszerfal borítás', 'Ez egy műszerfal borítás amit személyre szabható és könnyen tisztítható', 6, 2, '8990', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(8, 'Audi A6 C7 Első ajtó kárpit szett', 'Ez egy kárpit szett ami csak is kizárólag Audi A6 C7 autó belsejére jó', 7, 0, '29990', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(9, 'Fém rácsos csomagtér választó', 'Csomagtér választó ami megvédi a csomagok előtt ülő utasok biztonságát. Ez a csomagtér választó kizárólag csak kombiban jó.', 8, 1, '6990', '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51'),
+(10, 'Multifunkcionális kormány borítás', 'Ez minden kormányhoz jó', 10, 0, '1900', '2026-01-08 13:04:51', '2026-01-12 10:39:51', '2026-01-08 13:04:51');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `shipment`
+-- Table structure for table `shipment`
 --
 
 CREATE TABLE `shipment` (
@@ -369,12 +370,12 @@ CREATE TABLE `shipment` (
   `order_id` int(11) NOT NULL,
   `status` varchar(3) NOT NULL,
   `tracking_code` varchar(50) NOT NULL,
-  `shipped_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `delivered_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `shipped_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `delivered_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- A tábla adatainak kiíratása `shipment`
+-- Dumping data for table `shipment`
 --
 
 INSERT INTO `shipment` (`id`, `order_id`, `status`, `tracking_code`, `shipped_at`, `delivered_at`) VALUES
@@ -390,118 +391,118 @@ INSERT INTO `shipment` (`id`, `order_id`, `status`, `tracking_code`, `shipped_at
 (10, 10, 'del', 'TRK0010', '2026-01-02 13:06:32', '2026-01-05 13:06:32');
 
 --
--- Indexek a kiírt táblákhoz
+-- Indexes for dumped tables
 --
 
 --
--- A tábla indexei `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- A tábla indexei `discount`
+-- Indexes for table `discount`
 --
 ALTER TABLE `discount`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `order`
+-- Indexes for table `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `order_items`
+-- Indexes for table `order_items`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `payment`
+-- Indexes for table `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `shipment`
+-- Indexes for table `shipment`
 --
 ALTER TABLE `shipment`
   ADD PRIMARY KEY (`id`);
 
 --
--- A kiírt táblák AUTO_INCREMENT értéke
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT a táblához `cart`
+-- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT a táblához `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT a táblához `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT a táblához `discount`
+-- AUTO_INCREMENT for table `discount`
 --
 ALTER TABLE `discount`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT a táblához `order`
+-- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT a táblához `order_items`
+-- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT a táblához `payment`
+-- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT a táblához `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT a táblához `shipment`
+-- AUTO_INCREMENT for table `shipment`
 --
 ALTER TABLE `shipment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
