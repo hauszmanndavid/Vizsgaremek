@@ -1,0 +1,28 @@
+<div class="login-wrapper">
+  <div class="card">
+    <h2>Bejelentkezés</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="Email címed">
+      <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        Érvénytelen email formátum
+      </div>
+
+      <label>Jelszó</label>
+      <input type="password" formControlName="password" placeholder="Jelszó">
+      <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        Minimum 8 karakter
+      </div>
+
+      <p class="switch-text">
+      <a routerLink="/register" class="switch-link">Nincsen fiókja? Regisztráljon</a>
+      <a routerLink="#">Elfelejtette a jelszavát?</a>
+    </p>>
+
+      <button type="submit">Belépés</button>
+
+    </form>
+  </div>
+</div>

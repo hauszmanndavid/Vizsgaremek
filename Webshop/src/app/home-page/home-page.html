@@ -1,0 +1,49 @@
+<div class="page">
+
+  <app-nav-bar/>
+
+  <div class="filters">
+    <div>
+      <label>Kategória</label>
+      <select></select>
+    </div>
+
+    <div>
+      <label>Modell</label>
+      <select></select>
+    </div>
+
+    <div>
+      <label>Vételár</label>
+      <div class="range">
+        <input placeholder="-tól                           Ft">
+        <input placeholder="-ig                            Ft">
+      </div>
+    </div>
+
+    <button class="btn orange search" (click)="onSearch()">Keresés</button>
+  </div>
+
+  <h3>Kiemelt hirdetések:</h3>
+
+  <div class="product">
+    <img src="https://via.placeholder.com/120">
+    <div class="text">
+      <strong>6 sebességes váltógomb</strong>
+      <p>2018-as Kia Ceed és újabb modellekhez</p>
+      <p>Ár: 13 570 Ft</p>
+    </div>
+    <button class="btn orange">Kosárba</button>
+  </div>
+
+  <div class="product">
+    <img src="https://via.placeholder.com/120">
+    <div class="text">
+      <strong>Univerzális üléshuzat</strong>
+      <p>Bármelyik autóhoz, amelyben kagylóülések vannak</p>
+      <p>Ár: 33 920 Ft</p>
+    </div>
+    <button class="btn orange">Kosárba</button>
+  </div>
+
+</div>
