@@ -17,6 +17,7 @@ export class HomePage {
     maxPrice = '';
 
 private route= inject(Router);
+  cartService: any;
 
     onSearch() {
       this.route.navigate(['/search'] , {
@@ -28,4 +29,14 @@ private route= inject(Router);
         }
       });
     }
+
+    addToCart() {
+  this.cartService.addToCart({
+    id: 1,
+    name: '6 sebességes váltógomb',
+    price: 13570,
+    image: 'https://via.placeholder.com/100',
+    quantity: 1
+  });
+}
 }
