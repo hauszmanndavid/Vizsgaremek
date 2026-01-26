@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register', component: Registration },
   { path: 'cart', component: Cart },
+  { path: 'checkout', loadComponent: () => import('./checkout/checkout').then(m => m.Checkout) },
 
   { path: '**', redirectTo: 'home' }
 ];
