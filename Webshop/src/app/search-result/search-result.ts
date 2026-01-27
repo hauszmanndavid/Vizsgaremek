@@ -7,7 +7,7 @@ import { NavBar } from "../nav-bar/nav-bar";
 @Component({
   selector: 'app-search-result',
   standalone: true,
-  imports: [CommonModule, NavBar],
+  imports: [CommonModule, NavBar, RouterModule],
   templateUrl: './search-result.html',
   styleUrl: './search-result.css',
 })
