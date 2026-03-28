@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost:3306
--- Létrehozás ideje: 2026. Már 10. 20:09
+-- Létrehozás ideje: 2026. Már 28. 22:48
 -- Kiszolgáló verziója: 5.7.24
 -- PHP verzió: 8.3.1
 
@@ -201,10 +201,12 @@ INSERT INTO `customer` (`id`, `email`, `password`, `phone`, `name`, `address`, `
 (9, 'julia.fekete@test.hu', 'password123', '2147483647', NULL, NULL, 'USER'),
 (10, 'mark.papp@test.hu', 'password123', '2147483647', NULL, NULL, 'USER'),
 (11, 'kisbela@gmail.com', '6a0e7bfb', '06301234567', 'Kis Béla', 'Budapest Andrássy út 67', 'USER'),
-(12, 'sarpadbalazs@gmail.com', 'jelszo', NULL, NULL, NULL, NULL),
+(12, 'sarpadbalazs@gmail.com', 'jelszo', '06301234567', 'Árpád', '', NULL),
 (13, 'nagyimre@gmail.com', '54863874', '06305556678', 'Nagy Imre', 'Kaposvár, Temesvár utca 10', NULL),
 (14, 'nagypeter@gmail.com', 'jelszo', NULL, NULL, NULL, NULL),
-(15, 'hatizsak@gmail.com', 'jelszo123', NULL, NULL, NULL, NULL);
+(15, 'hatizsak@gmail.com', 'jelszo123', NULL, NULL, NULL, NULL),
+(16, 'kisimi@gmail.com', '123456', '+36 30 555 6666', 'Kis Imre', 'Kaposvár kis utca 20', NULL),
+(17, 'panti@gmail.com', '3a659c0d', '+36 20 123 4567', 'Péterfi Antal', 'Nagykőrös, Péter utca 6', NULL);
 
 -- --------------------------------------------------------
 
@@ -238,27 +240,6 @@ INSERT INTO `discount` (`id`, `name`, `desc`, `discount_percent`, `active`, `cre
 (8, 'Új vásárló', 'Első vásárlás kedvezménye', '10', 1, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
 (9, 'VIP', 'VIP ügyfeleknek szóló kedvezmény', '40', 0, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26'),
 (10, 'Lejárt akció', 'Már nem érvényes kedvezmény', '50', 0, '2026-01-08 12:59:26', '2026-01-08 12:59:26', '2026-01-08 12:59:26');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `model`
---
-
-CREATE TABLE `model` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- A tábla adatainak kiíratása `model`
---
-
-INSERT INTO `model` (`id`, `name`) VALUES
-(1, 'Kia Ceed'),
-(2, 'Audi A6'),
-(3, 'BMW E46'),
-(4, 'Toyota Corolla');
 
 -- --------------------------------------------------------
 
@@ -311,7 +292,9 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `order_date`, `status`, `total_price`, `customer_id`) VALUES
 (1, '2026-02-28 21:51:48.613662', 'Feldolgozás alatt', 60000, 11),
-(2, '2026-03-03 22:18:25.309461', 'Feldolgozás alatt', 120000, 13);
+(2, '2026-03-03 22:18:25.309461', 'Feldolgozás alatt', 120000, 13),
+(3, '2026-03-20 21:08:09.693282', 'Feldolgozás alatt', 61990, 16),
+(4, '2026-03-20 21:22:03.794778', 'Feldolgozás alatt', 65970, 17);
 
 -- --------------------------------------------------------
 
@@ -332,7 +315,11 @@ CREATE TABLE `order_item` (
 
 INSERT INTO `order_item` (`id`, `quantity`, `orders_id`, `product_id`) VALUES
 (1, 1, 1, 1),
-(2, 2, 2, 1);
+(2, 2, 2, 1),
+(3, 1, 3, 1),
+(4, 1, 3, 2),
+(5, 1, 4, 1),
+(6, 3, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -413,25 +400,24 @@ CREATE TABLE `product` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `image_url` varchar(500) DEFAULT NULL,
-  `model_id` int(11) DEFAULT NULL
+  `image_url` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- A tábla adatainak kiíratása `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `desc`, `category_id`, `discount_id`, `price`, `created_at`, `modified_at`, `deleted_at`, `image_url`, `model_id`) VALUES
-(1, 'Alcantara üléshuzat', 'Prémium Alcantara ülésvédő huzat.', 2, 1, 60000, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'alcantara.jpg', NULL),
-(2, 'Egyszerű csomagtér választó háló', 'Minden járműhöz lehet használni.', 11, 2, 1990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'csomagter-halo.jpg', NULL),
-(3, 'Multimédiás fejegység', 'Érintőkijelzős fejegység Bluetooth-tal, Android Auto-val és Apple CarPlay-yel.', 9, 3, 45990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'multimedias-fejegyseg.jpg', NULL),
-(4, 'Sport váltógomb (5 Fokozatú)', 'Bármilyen autóba illik aminek 5 fokozatú váltóje van.', 8, 4, 3990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'sport-valtogomb.jpg', NULL),
-(5, 'Areon cseresznye légfrissítő', 'Cseresznye illatú Areon legfrissítő', 10, 1, 1500, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'areon-legfrissito.jpg', NULL),
-(6, 'Alumínium pedálszett', 'Ez a szett tartalmaz egy gázpedált egy fékpedált és egy kuplung pedál is.', 4, 5, 12990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'aluminum-pedalszett.jpg', NULL),
-(7, 'Világos műszerfal borítás', 'Ez egy műszerfal borítás amit személyre szabható és könnyen tisztítható', 5, 2, 8990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'muszerfal-boritas.jpg', NULL),
-(8, 'Audi A6 C7 Első ajtó kárpit szett', 'Ez egy kárpit szett ami csak is kizárólag Audi A6 C7 autó belsejére jó', 3, 0, 29990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'audi-a6-karpit.jpg', NULL),
-(9, 'Fém rácsos csomagtér választó', 'Csomagtér választó ami megvédi a csomagok előtt ülő utasok biztonságát. Ez a csomagtér választó kizárólag csak kombiban jó.', 11, 1, 6990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'fem-racsos-csomagter.jpg', NULL),
-(10, 'Multifunkcionális kormány borítás', 'Ez minden kormányhoz jó', 1, 0, 1900, '2026-01-08 13:04:51', '2026-01-12 10:39:51', '2026-01-08 13:04:51', 'kormany-boritas.jpg', NULL);
+INSERT INTO `product` (`id`, `name`, `desc`, `category_id`, `discount_id`, `price`, `created_at`, `modified_at`, `deleted_at`, `image_url`) VALUES
+(1, 'Alcantara üléshuzat', 'Prémium Alcantara ülésvédő huzat.', 2, 1, 60000, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'alcantara.jpg'),
+(2, 'Egyszerű csomagtér választó háló', 'Minden járműhöz lehet használni.', 11, 2, 1990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'csomagter-halo.jpg'),
+(3, 'Multimédiás fejegység', 'Érintőkijelzős fejegység Bluetooth-tal, Android Auto-val és Apple CarPlay-yel.', 9, 3, 45990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'multimedias-fejegyseg.jpg'),
+(4, 'Sport váltógomb (5 Fokozatú)', 'Bármilyen autóba illik aminek 5 fokozatú váltóje van.', 8, 4, 3990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'sport-valtogomb.jpg'),
+(5, 'Areon cseresznye légfrissítő', 'Cseresznye illatú Areon legfrissítő', 10, 1, 1500, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'areon-legfrissito.jpg'),
+(6, 'Alumínium pedálszett', 'Ez a szett tartalmaz egy gázpedált egy fékpedált és egy kuplung pedál is.', 4, 5, 12990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'aluminum-pedalszett.jpg'),
+(7, 'Világos műszerfal borítás', 'Ez egy műszerfal borítás amit személyre szabható és könnyen tisztítható', 5, 2, 8990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'muszerfal-boritas.jpg'),
+(8, 'Audi A6 C7 Első ajtó kárpit szett', 'Ez egy kárpit szett ami csak is kizárólag Audi A6 C7 autó belsejére jó', 3, 0, 29990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'audi-a6-karpit.jpg'),
+(9, 'Fém rácsos csomagtér választó', 'Csomagtér választó ami megvédi a csomagok előtt ülő utasok biztonságát. Ez a csomagtér választó kizárólag csak kombiban jó.', 11, 1, 6990, '2026-01-08 13:04:51', '2026-01-08 13:04:51', '2026-01-08 13:04:51', 'fem-racsos-csomagter.jpg'),
+(10, 'Multifunkcionális kormány borítás', 'Ez minden kormányhoz jó', 1, 0, 1900, '2026-01-08 13:04:51', '2026-01-12 10:39:51', '2026-01-08 13:04:51', 'kormany-boritas.jpg');
 
 -- --------------------------------------------------------
 
@@ -491,12 +477,6 @@ ALTER TABLE `customer`
 -- A tábla indexei `discount`
 --
 ALTER TABLE `discount`
-  ADD PRIMARY KEY (`id`);
-
---
--- A tábla indexei `model`
---
-ALTER TABLE `model`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -564,19 +544,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT a táblához `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT a táblához `discount`
 --
 ALTER TABLE `discount`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT a táblához `model`
---
-ALTER TABLE `model`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT a táblához `order`
@@ -588,13 +562,13 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT a táblához `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT a táblához `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `order_items`
