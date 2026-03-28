@@ -16,10 +16,8 @@ import { RouterModule } from '@angular/router';
 export class HomePage implements OnInit {
   products: any[] = [];
   categories: any[] = [];
-  models: any[] = [];
 
   selectedCategory: string = '';
-  selectedModel: string = '';
   minPrice: number | null = null;
   maxPrice: number | null = null;
 
@@ -45,20 +43,11 @@ export class HomePage implements OnInit {
       },
       error: (err) => console.error('Hiba a kategóriák betöltésekor:', err)
     });
-
-    this.http.get<any[]>('http://localhost:8080/api/models').subscribe({
-      next: (data) => {
-        this.models = data;
-        this.cdr.detectChanges();
-      },
-      error: (err) => console.error('Hiba a modellek betöltésekor:', err)
-    });
   }
 
   search() {
     const params: any = {};
     if (this.selectedCategory) params['categoryId'] = this.selectedCategory;
-    if (this.selectedModel) params['modelId'] = this.selectedModel;
     if (this.minPrice) params['minPrice'] = this.minPrice;
     if (this.maxPrice) params['maxPrice'] = this.maxPrice;
 

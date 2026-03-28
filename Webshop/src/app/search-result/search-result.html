@@ -1,19 +1,19 @@
 <div class="result-wrapper">
   <app-nav-bar/>
 
-  <h2>Keresési találatok</h2>
+  <h2>Keresési találatok: "{{ query }}"</h2>
 
   <div *ngIf="result.length === 0" class="no-result">
     Nincs keresési találat
   </div>
 
-  <div class="result-card" *ngFor="let item of result">
+  <div class="result-card" *ngFor="let item of result" [routerLink]="['/product', item.id]" style="cursor: pointer;">
     <img [src]="item.imageUrl" [alt]="item.name">
     <div class="text">
       <p><strong>{{ item.name }}</strong></p>
       <p>{{ item.description }}</p>
       <p>Ár: {{ item.price }} Ft</p>
     </div>
-    <button class="btn orange">Kosárba</button>
+    <button class="btn orange" (click)="addToCart(item); $event.stopPropagation()">Kosárba</button>
   </div>
 </div>

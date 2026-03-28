@@ -10,13 +10,6 @@
       </select>
     </div>
     <div>
-      <label>Modell</label>
-      <select [(ngModel)]="selectedModel">
-        <option value="">↓</option>
-        <option *ngFor="let m of models" [value]="m.id">{{ m.name }}</option>
-      </select>
-    </div>
-    <div>
       <label>Vételár</label>
       <div class="range">
         <input type="number" placeholder="-tól" [(ngModel)]="minPrice">

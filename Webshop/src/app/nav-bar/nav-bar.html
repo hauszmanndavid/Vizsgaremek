@@ -6,6 +6,11 @@
     </div>
 
     <div class="right">
+        <div class="search-bar">
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Keresés..." (keyup.enter)="search()">
+            <button class="search-btn" (click)="search()">🔍</button>
+        </div>
+
         <div class="btn orange" routerLink="/cart">Kosár</div>
 
         <ng-container *ngIf="isLoggedIn(); else loginBtn">
