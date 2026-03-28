@@ -47,6 +47,15 @@ public class LoginController {
         return repo.save(customer);
     }
 
+    @GetMapping("/api/customer")
+    public ResponseEntity<?> getCustomer(@RequestParam String email) {
+        Customer customer = repo.findByEmail(email);
+        if (customer == null) {
+            return ResponseEntity.status(404).body("Felhasználó nem található!");
+        }
+        return ResponseEntity.ok(customer);
+    }
+
     @PutMapping("/api/customer/update")
     public ResponseEntity<?> updateCustomer(@RequestBody Customer updatedCustomer) {
         Customer existing = repo.findByEmail(updatedCustomer.getEmail());

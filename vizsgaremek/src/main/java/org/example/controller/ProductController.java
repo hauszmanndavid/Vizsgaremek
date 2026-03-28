@@ -23,20 +23,19 @@ public class ProductController {
     @GetMapping("/products/filter")
     public List<Product> filterProducts(
             @RequestParam(required = false) Integer categoryId,
-            @RequestParam(required = false) Integer modelId,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice
     ) {
-        return productRepository.filterProducts(categoryId, modelId, minPrice, maxPrice);
-    }
-
-    @GetMapping("/products/{id}")
-    public Product getProductById(@PathVariable Integer id) {
-        return productRepository.findById(id).orElse(null);
+        return productRepository.filterProducts(categoryId, minPrice, maxPrice);
     }
 
     @GetMapping("/products/search")
     public List<Product> searchProducts(@RequestParam String name) {
         return productRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    @GetMapping("/products/{id}")
+    public Product getProductById(@PathVariable Integer id) {
+        return productRepository.findById(id).orElse(null);
     }
 }
