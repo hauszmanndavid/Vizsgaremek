@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,8 @@ export class SearchResult implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private cartService: CartService
+    private cartService: CartService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -29,11 +30,13 @@ export class SearchResult implements OnInit {
         this.http.get<any[]>(`http://localhost:8080/api/products/search?name=${encodeURIComponent(this.query)}`).subscribe({
           next: (data) => {
             this.result = data;
+            this.cdr.detectChanges();
           },
           error: (err) => console.error(err)
         });
       } else {
         this.result = [];
+        this.cdr.detectChanges();
       }
     });
   }

@@ -20,6 +20,10 @@ export class NavBar {
     return !!localStorage.getItem('token');
   }
 
+  isAdmin(): boolean {
+    return localStorage.getItem('role') === 'ADMIN';
+  }
+
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
@@ -39,8 +43,8 @@ export class NavBar {
   search() {
     if (this.searchQuery.trim()) {
       const q = this.searchQuery.trim();
-      this.searchQuery = '';
       this.router.navigate(['/search'], { queryParams: { q: q } });
+      this.searchQuery = '';
     }
   }
 }

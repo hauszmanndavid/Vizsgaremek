@@ -63,6 +63,20 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./product-detail/product-detail').then(m => m.ProductDetail),
   },
-
+  {
+    path: 'admin/orders',
+    loadComponent: () =>
+      import('./admin/admin-orders/admin-orders').then(m => m.AdminOrders),
+  },
+  {
+    path: 'admin/products',
+    loadComponent: () =>
+      import('./admin/admin-products/admin-products').then(m => m.AdminProducts),
+  },
+  {
+    path: 'admin/users',
+    loadComponent: () =>
+      import('./admin/admin-users/admin-users').then(m => m.AdminUsers),
+  },
   { path: '**', redirectTo: 'home' },
 ];

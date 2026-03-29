@@ -24,6 +24,12 @@
                     <a routerLink="/profile" (click)="closeDropdown()">Profil</a>
                     <a routerLink="/favorites" (click)="closeDropdown()">Kedvencek</a>
                     <a routerLink="/settings" (click)="closeDropdown()">Beállítások</a>
+                    <ng-container *ngIf="isAdmin()">
+                        <hr class="dropdown-divider">
+                        <a routerLink="/admin/orders" (click)="closeDropdown()">Rendelések</a>
+                        <a routerLink="/admin/products" (click)="closeDropdown()">Termékek</a>
+                        <a routerLink="/admin/users" (click)="closeDropdown()">Felhasználók</a>
+                    </ng-container>
                     <a (click)="logout()">Kijelentkezés</a>
                 </div>
             </div>

@@ -1,0 +1,42 @@
+<app-nav-bar/>
+
+<div class="page">
+  <h2>Rendelések kezelése</h2>
+
+  <div *ngIf="orders.length === 0" class="empty">Nincsenek rendelések.</div>
+
+  <div class="order-card" *ngFor="let order of orders">
+    <div class="order-header">
+      <span><strong>Rendelés #{{ order.id }}</strong></span>
+      <span>{{ order.orderDate | date:'yyyy-MM-dd HH:mm' }}</span>
+      <span>Végösszeg: <strong>{{ order.totalPrice }} Ft</strong></span>
+    </div>
+
+    <div class="order-customer" *ngIf="order.customer">
+      <p><strong>Megrendelő:</strong> {{ order.customer.name }}</p>
+      <p><strong>Email:</strong> {{ order.customer.email }}</p>
+      <p><strong>Telefon:</strong> {{ order.customer.phone }}</p>
+      <p><strong>Cím:</strong> {{ order.customer.address }}</p>
+    </div>
+
+    <div class="order-items" *ngIf="order.items && order.items.length > 0">
+      <p><strong>Rendelt tételek:</strong></p>
+      <div class="order-item" *ngFor="let item of order.items">
+        <span>{{ item.product.name }}</span>
+        <span>{{ item.quantity }} db</span>
+        <span>{{ item.product.price }} Ft</span>
+      </div>
+    </div>
+
+    <div class="order-actions">
+      <select [(ngModel)]="order.status">
+        <option value="Feldolgozás alatt">Feldolgozás alatt</option>
+        <option value="Kiszállítás alatt">Kiszállítás alatt</option>
+        <option value="Kiszállítva">Kiszállítva</option>
+        <option value="Törölve">Törölve</option>
+      </select>
+      <button class="btn orange" (click)="updateStatus(order)">Mentés</button>
+      <button class="btn red" (click)="deleteOrder(order.id)">Törlés</button>
+    </div>
+  </div>
+</div>
