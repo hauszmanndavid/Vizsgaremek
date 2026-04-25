@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBar } from '../nav-bar/nav-bar';
 import { RouterModule } from '@angular/router';
@@ -9,7 +9,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, NavBar, RouterModule, HttpClientModule],
   templateUrl: './profile.html',
-  styleUrl: './profile.css'
+  styleUrl: './profile.css',
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class Profile implements OnInit {
   name = '';
@@ -17,8 +18,9 @@ export class Profile implements OnInit {
   phone = '';
   address = '';
   profileImage: string | null = null;
+  successMessage = '';
 
-  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef, private ngZone: NgZone) {}
 
   ngOnInit() {
     this.email = localStorage.getItem('email') || '';
@@ -47,8 +49,16 @@ export class Profile implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.profileImage = e.target.result;
-        localStorage.setItem('profileImage', e.target.result);
+        this.ngZone.run(() => {
+          this.profileImage = e.target.result;
+          localStorage.setItem('profileImage', e.target.result);
+          this.successMessage = 'Profilkép sikeresen frissítve!';
+          this.cdr.detectChanges();
+          setTimeout(() => {
+            this.successMessage = '';
+            this.cdr.detectChanges();
+          }, 3000);
+        });
       };
       reader.readAsDataURL(file);
     }

@@ -1,7 +1,7 @@
 .navbar {
   background: #1f2a35;
   padding: 12px 20px;
-  border-radius: 10px;
+  border-radius: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -122,4 +122,11 @@
   border: none;
   border-top: 1px solid #ccc;
   margin: 5px 0;
+}
+
+.avatar-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
 }

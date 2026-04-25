@@ -1,6 +1,9 @@
 <app-nav-bar/>
 
 <div class="page">
+
+  <div class="success" *ngIf="successMessage">{{ successMessage }}</div>
+
   <div class="profile-container">
     <div class="avatar-box" (click)="fileInput.click()">
       <img *ngIf="profileImage" [src]="profileImage" alt="Profilkép" class="profile-img">

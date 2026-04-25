@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NavBar } from '../nav-bar/nav-bar';
 import { CartService } from '../services/cart-service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavBar, HttpClientModule],
+  imports: [CommonModule, FormsModule, NavBar, HttpClientModule, RouterModule],
   templateUrl: './checkout.html',
   styleUrl: './checkout.css'
 })
@@ -20,6 +20,9 @@ export class Checkout implements OnInit {
   email = '';
   address = '';
   phone = '';
+  password = '';
+  confirmPassword = '';
+  isLoggedIn = false;
 
   constructor(
     private cartService: CartService,
@@ -29,6 +32,12 @@ export class Checkout implements OnInit {
 
   ngOnInit() {
     this.total = this.cartService.getTotal();
+    this.isLoggedIn = !!localStorage.getItem('token');
+
+    if (this.isLoggedIn) {
+      this.name = localStorage.getItem('name') || '';
+      this.email = localStorage.getItem('email') || '';
+    }
   }
 
   pay() {
@@ -42,12 +51,17 @@ export class Checkout implements OnInit {
       return;
     }
 
+    if (!this.isLoggedIn && this.password && this.password !== this.confirmPassword) {
+      alert('A két jelszó nem egyezik!');
+      return;
+    }
+
     const cartItems = this.cartService.getItems().map(item => ({
       productId: item.id,
       quantity: item.quantity
     }));
 
-    const orderRequest = {
+    const orderRequest: any = {
       name: this.name,
       email: this.email,
       address: this.address,
@@ -55,6 +69,10 @@ export class Checkout implements OnInit {
       paymentMethod: this.selectedPayment,
       cartItems: cartItems
     };
+
+    if (!this.isLoggedIn && this.password) {
+      orderRequest.password = this.password;
+    }
 
     this.http.post('http://localhost:8080/order', orderRequest, { responseType: 'text' }).subscribe({
       next: (response) => {

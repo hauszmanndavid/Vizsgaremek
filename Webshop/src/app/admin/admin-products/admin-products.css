@@ -60,7 +60,8 @@ h3 {
   gap: 6px;
 }
 
-.product-info input {
+.product-info input,
+.product-info select {
   padding: 6px 10px;
   border-radius: 6px;
   border: none;

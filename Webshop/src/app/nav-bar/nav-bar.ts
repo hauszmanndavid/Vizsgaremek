@@ -24,6 +24,10 @@ export class NavBar {
     return localStorage.getItem('role') === 'ADMIN';
   }
 
+  getProfileImage(): string | null {
+    return localStorage.getItem('profileImage');
+  }
+
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
@@ -37,6 +41,7 @@ export class NavBar {
     localStorage.removeItem('email');
     localStorage.removeItem('role');
     localStorage.removeItem('name');
+    localStorage.removeItem('profileImage');
     window.location.href = '/home';
   }
 

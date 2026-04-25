@@ -40,6 +40,9 @@
       <input type="text" [(ngModel)]="product.name">
       <input type="text" [(ngModel)]="product.description">
       <input type="number" [(ngModel)]="product.price">
+      <select [(ngModel)]="product.categoryId">
+        <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+      </select>
     </div>
     <div class="product-actions">
       <button class="btn orange" (click)="updateProduct(product)">Mentés</button>

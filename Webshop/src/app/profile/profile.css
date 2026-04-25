@@ -61,3 +61,14 @@
   font-size: 16px;
   margin: 8px 0;
 }
+
+.success {
+  background: #4caf50;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  max-width: 900px;
+  margin: 0 auto 15px;
+  text-align: center;
+}
