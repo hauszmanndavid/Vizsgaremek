@@ -35,6 +35,7 @@ public class OrderController {
         public String address;
         public String phone;
         public String paymentMethod;
+        public String password;
         public List<CartItemRequest> cartItems;
     }
 
@@ -49,17 +50,19 @@ public class OrderController {
         Customer customer = customerRepository.findByEmail(request.email);
 
         if (customer == null) {
-            String randomPassword = UUID.randomUUID().toString().substring(0, 8);
+            String passwordToUse = (request.password != null && !request.password.isEmpty())
+                    ? request.password
+                    : UUID.randomUUID().toString().substring(0, 8);
 
             customer = new Customer();
             customer.setName(request.name);
             customer.setEmail(request.email);
             customer.setAddress(request.address);
             customer.setPhone(request.phone);
-            customer.setPassword(randomPassword);
+            customer.setPassword(passwordToUse);
+            customer.setRole("USER");
             customerRepository.save(customer);
 
-            // Email küldése
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(request.email);
             message.setSubject("Sikeres rendelés - Fiók adatok");
@@ -68,7 +71,7 @@ public class OrderController {
                             "Köszönjük a rendelését!\n\n" +
                             "Fiók adatai:\n" +
                             "Email: " + request.email + "\n" +
-                            "Jelszó: " + randomPassword + "\n\n" +
+                            "Jelszó: " + passwordToUse + "\n\n" +
                             "Üdvözlettel,\nA csapat"
             );
             mailSender.send(message);
