@@ -1,0 +1,21 @@
+<app-nav-bar/>
+
+<div class="page">
+  <h2>Felhasználók kezelése</h2>
+
+  <div class="user-card" *ngFor="let user of users">
+    <div class="user-info">
+      <input type="text" [(ngModel)]="user.name" placeholder="Név">
+      <input type="email" [(ngModel)]="user.email" placeholder="Email">
+      <input type="text" [(ngModel)]="user.phone" placeholder="Telefon">
+      <select [(ngModel)]="user.role">
+        <option value="USER">USER</option>
+        <option value="ADMIN">ADMIN</option>
+      </select>
+    </div>
+    <div class="user-actions">
+      <button class="btn orange" (click)="updateUser(user)">Mentés</button>
+      <button class="btn red" (click)="deleteUser(user.id)">Törlés</button>
+    </div>
+  </div>
+</div>

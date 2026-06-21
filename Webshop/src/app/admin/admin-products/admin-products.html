@@ -1,0 +1,52 @@
+<app-nav-bar/>
+
+<div class="page">
+  <div class="header-row">
+    <h2>Termékek kezelése</h2>
+    <button class="btn orange" (click)="showAddForm = !showAddForm">+ Új termék</button>
+  </div>
+
+  <div class="add-form" *ngIf="showAddForm">
+    <h3>Új termék felvitele</h3>
+    <input type="text" [(ngModel)]="newProduct.name" placeholder="Termék neve">
+    <input type="text" [(ngModel)]="newProduct.description" placeholder="Leírás">
+    <input type="number" [(ngModel)]="newProduct.price" placeholder="Ár (Ft)">
+    <select [(ngModel)]="newProduct.categoryId">
+      <option value="">Kategória választása</option>
+      <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+    </select>
+    <div class="image-upload">
+      <img *ngIf="newProduct.imageUrl" [src]="newProduct.imageUrl" alt="Előnézet" class="preview-img">
+      <label class="upload-label">
+        Kép feltöltése
+        <input type="file" accept="image/*" (change)="onNewImageUpload($event)" style="display:none">
+      </label>
+    </div>
+    <div class="form-buttons">
+      <button class="btn orange" (click)="addProduct()">Hozzáadás</button>
+      <button class="btn red" (click)="showAddForm = false">Mégse</button>
+    </div>
+  </div>
+
+  <div class="product-card" *ngFor="let product of products">
+    <div class="image-upload">
+      <img [src]="product.imageUrl" [alt]="product.name" class="preview-img">
+      <label class="upload-label">
+        Kép cseréje
+        <input type="file" accept="image/*" (change)="onProductImageUpload($event, product)" style="display:none">
+      </label>
+    </div>
+    <div class="product-info">
+      <input type="text" [(ngModel)]="product.name">
+      <input type="text" [(ngModel)]="product.description">
+      <input type="number" [(ngModel)]="product.price">
+      <select [(ngModel)]="product.categoryId">
+        <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+      </select>
+    </div>
+    <div class="product-actions">
+      <button class="btn orange" (click)="updateProduct(product)">Mentés</button>
+      <button class="btn red" (click)="deleteProduct(product.id)">Törlés</button>
+    </div>
+  </div>
+</div>
